@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "sseds",
+	"version": "${version}",
+	"name": "SSEDS",
+	"description": "Simple Synchronized Entity Data Serializers",
+	"authors": [
+		"FoundationGames"
+	],
+	"contact": {
+		"sources": "https://github.com/FoundationGames/SSEDS"
+	},
+	"license": "MIT",
+	"icon": "assets/sseds/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.foundationgames.sseds.SSEDS"
+		],
+		"client": [
+			"io.github.foundationgames.sseds.SSEDSClient"
+		]
+	},
+	"mixins": [
+		"sseds.mixins.json",
+		{
+			"config": "sseds.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
