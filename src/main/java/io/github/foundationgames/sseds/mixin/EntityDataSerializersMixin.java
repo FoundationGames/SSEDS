@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(EntityDataSerializers.class)
+@Mixin(value = EntityDataSerializers.class, priority = 900)
 public class EntityDataSerializersMixin {
     static {
         SSEDS.registerContext = new RegisterContext.Modded();
@@ -20,10 +20,6 @@ public class EntityDataSerializersMixin {
 
     @Inject(method = "registerSerializer", at = @At("HEAD"), cancellable = true)
     private static void sseds$redirectRegistration(EntityDataSerializer<?> serializer, CallbackInfo ci) {
-        if (SSEDS.registerContext == null) {
-            throw new RuntimeException();
-        }
-
         Registry.register(SSEDS.EDS_REGISTRY, SSEDS.registerContext.createNextId(), serializer);
         ci.cancel();
     }
